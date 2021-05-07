@@ -1,6 +1,44 @@
 .App {
+  margin: 10px;
   display: flex;
-  flex-direction: column;
   text-align: center;
   align-items: center;
+  place-items: center;
+}
+
+.app__login {
+  display: flex;
+
+  width: 100%;
+  justify-content: space-around;
+}
+
+.card__login {
+  display: flex;
+  flex-direction: column;
+
+  margin: 10px;
+}
+
+.welcome {
+  border: solid green;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  align-content: space-between;
+}
+
+.welcome__link {
+  margin-left: 15px;
+  color: rgba(240, 240, 240);
+}
+
+.welcome__goback {
+  float: right;
+}
+.about {
+  border: solid rgb(224, 17, 224);
+}
+.contact {
+  border: solid rgb(52, 196, 24);
 }
