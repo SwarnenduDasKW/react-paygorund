@@ -14,6 +14,10 @@ import About from "./About";
 import Button from "@material-ui/core/Button";
 import Contact from "./Contact";
 import { AppContext } from "./AppContext";
+import Facts from "./Facts";
+import DemoHome from "./Demographic/DemoHome";
+import Demographic from "./Demographic/Demographic";
+import Employment from "./Demographic/Employment";
 
 import "./App.css";
 
@@ -48,6 +52,12 @@ function Welcome() {
             <Link className="welcome__link" to="/welcome">
               Home
             </Link>
+            <Link className="welcome__link" to="/facts">
+              Facts
+            </Link>
+            <Link className="welcome__link" to="/demohome">
+              Demographic
+            </Link>
             <Link className="welcome__link" to="/about">
               About
             </Link>
@@ -63,6 +73,18 @@ function Welcome() {
         <Switch>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/facts">
+            <Facts />
+          </Route>
+          <Route path="/demohome">
+            <DemoHome />
+          </Route>
+          <Route path="/demographic">
+            <Demographic />
+          </Route>
+          <Route path="/employment">
+            <Employment />
           </Route>
           <Route path="/about">
             <About />

@@ -5,8 +5,13 @@ import Chip from "@material-ui/core/Chip";
 import PetsIcon from "@material-ui/icons/Pets";
 import CachedIcon from "@material-ui/icons/Cached";
 
+import Fab from "@material-ui/core/Fab";
+
+import "./App.css";
+
 function Facts() {
   const [fact, setFact] = useState("");
+  const [timer, setTimer] = useState(0);
 
   useEffect(() => {
     async function fetchRandomFact() {
@@ -22,15 +27,26 @@ function Facts() {
     }
 
     fetchRandomFact();
-  }, []);
+  }, [timer]);
+
+  const handleNewFacts = () => {
+    setTimer((x) => x + 1);
+  };
 
   return (
     <div className="facts">
       <h1>Random Facts About Cats</h1>
       {fact.length > 0 ? (
-        <Chip icon={<PetsIcon />} color="primary" label={fact} />
+        <div>
+          <Chip icon={<PetsIcon />} color="secondary" label={fact} />
+          <br />
+          <br />
+          <Fab color="primary" aria-label="Cat" onClick={handleNewFacts}>
+            <PetsIcon />
+          </Fab>
+        </div>
       ) : (
-        <Chip icon={<CachedIcon />} color="secondary" label="Loading..." />
+        <Chip icon={<CachedIcon />} color="primary" label="Loading..." />
       )}
     </div>
   );

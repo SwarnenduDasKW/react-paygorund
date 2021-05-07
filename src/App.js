@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from "react";
 import "./App.css";
 import Login from "./Login";
-import Facts from "./Facts";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Welcome from "./Welcome";
 import { AppContext } from "./AppContext";
+import PageNotFound from "./PageNotFound";
+import DemoHome from "./Demographic/DemoHome";
 
 function App() {
   const [appData, setAppData] = useState({});
@@ -20,9 +21,13 @@ function App() {
       <AppContext.Provider value={appProvider}>
         <Router>
           <Switch>
-            <Route path="/welcome" component={Welcome} />
-            <Route path="/">
+            <Route exact path="/">
               <Login />
+            </Route>
+            <Route path="/welcome" component={Welcome} />
+            <Route path="/demohome" component={DemoHome} />
+            <Route>
+              <PageNotFound />
             </Route>
           </Switch>
         </Router>
