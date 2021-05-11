@@ -3,8 +3,11 @@ import TextField from "@material-ui/core/TextField";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
+import BackNext from "../BackNext";
+import { Link, useHistory } from "react-router-dom";
 
 function Demographic() {
+  const history = useHistory();
   const [value, setValue] = useState("female");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -14,26 +17,41 @@ function Demographic() {
     setValue(event.target.value);
   };
 
+  const handleNext = () => {
+    console.log("Demographic -> handleNext");
+    history.push("/employment");
+  };
+
+  const handlePrev = () => {
+    console.log("Demographic -> handlePrev");
+    history.push("/demohome");
+  };
+
   return (
     <div>
       <h1>Demographic Data</h1>
-      <TextField
-        id="firstName"
-        label="First Name"
-        onChange={(e) => setFirstName(e.target.value)}
-      />
-      <TextField id="lastName" label="Last Name" />
-      <TextField id="email" label="Email" />
+      <div>
+        <TextField
+          id="firstName"
+          label="First Name"
+          onChange={(e) => setFirstName(e.target.value)}
+        />
 
-      <RadioGroup
-        aria-label="gender"
-        name="gender1"
-        value={value}
-        onChange={handleChange}
-      >
-        <FormControlLabel value="female" control={<Radio />} label="Female" />
-        <FormControlLabel value="male" control={<Radio />} label="Male" />
-      </RadioGroup>
+        <TextField id="lastName" label="Last Name" />
+
+        <TextField id="email" label="Email" />
+
+        <RadioGroup
+          aria-label="gender"
+          name="gender1"
+          value={value}
+          onChange={handleChange}
+        >
+          <FormControlLabel value="female" control={<Radio />} label="Female" />
+          <FormControlLabel value="male" control={<Radio />} label="Male" />
+        </RadioGroup>
+      </div>
+      <BackNext next={handleNext} prev={handlePrev} />
     </div>
   );
 }

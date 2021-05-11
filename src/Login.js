@@ -30,6 +30,12 @@ function Login() {
   const handleClick = () => {
     history.push("/welcome");
   };
+  const handleClickA = () => {
+    history.push("/complextree");
+  };
+  const handleClickARedux = () => {
+    history.push("/complextreeredux");
+  };
   return (
     <div>
       <Card className="app__login">
@@ -78,6 +84,18 @@ function Login() {
           <hr />
           <Button variant="contained" color="primary" onClick={handleClick}>
             Go
+          </Button>
+          <hr />
+          <Button variant="contained" color="primary" onClick={handleClickA}>
+            ComplexTree
+          </Button>
+          <hr />
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleClickARedux}
+          >
+            ComplexTreeRedux
           </Button>
         </form>
       </Card>

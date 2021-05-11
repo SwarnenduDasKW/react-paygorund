@@ -16,6 +16,7 @@ function DemoHome() {
   return (
     <div className="demohome">
       <h1>Demographic Data Entry Form</h1>
+      <BackNext next={handleNext} />
       {/* <div>
         <Router>
           <Switch>
@@ -26,9 +27,9 @@ function DemoHome() {
           <BackNext next={handleNext} />
         </Router>
       </div> */}
-      <Router>
-        {/* <Link to="/demographic">Demographic</Link> */}
-        <Button variant="contained" color="primary" onClick={handleNext}>
+      {/* <Router> */}
+      {/* <Link to="/demographic">Demographic</Link> */}
+      {/* <Button variant="contained" color="primary" onClick={handleNext}>
           Demo
         </Button>
         <Switch>
@@ -39,7 +40,7 @@ function DemoHome() {
             <Employment />
           </Route>
         </Switch>
-      </Router>
+      </Router>  */}
     </div>
   );
 }

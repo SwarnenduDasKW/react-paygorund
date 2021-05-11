@@ -1,0 +1,13 @@
+.ar {
+    display: flex;
+}
+
+.ar__flow {
+    margin-left: 100px;
+    border: 2px dashed plum;
+}
+
+.ar__flow__img {
+    width: 600px;
+    height: 500px;
+}

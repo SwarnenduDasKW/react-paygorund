@@ -1,0 +1,13 @@
+.a {
+    display: flex;
+}
+
+.a__flow {
+    margin-left: 100px;
+    border: 2px dashed plum;
+}
+
+.a__flow__img {
+    width: 600px;
+    height: 500px;
+}
