@@ -1,0 +1,12 @@
+.header_text {
+    font-size: 1.6rem;
+    font-family: "Lucida Console";
+    text-align: center;
+    padding: 10px 20px;
+    color: #ffffff;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    background: rgb(109, 1, 1);
+    z-index: 10;
+}
