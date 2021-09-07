@@ -7,6 +7,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    useRouteMatch,
 } from "react-router-dom";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
@@ -20,26 +21,26 @@ import Demographic from "./Demographic/Demographic";
 import Employment from "./Demographic/Employment";
 import ImmerDemo from "./ImmerDemo";
 import HigherOrderComponent from "./HigherOrderComponent";
+import NestedObjects from "./NestedObjects";
 import RenderProps from "./RenderProps";
+import UseRefDemo from "./UseRefDemo";
+import PageNotFound from "./PageNotFound";
+import AboutMe from "./AboutMe";
+import Home from "./Home";
+import history from "./history";
+import Saga from "./Saga";
+import { Provider } from "react-redux";
 
 import "./App.css";
 
 function Welcome() {
+    let match = useRouteMatch();
     useEffect(() => {
-        console.log("Welcome --> appData", appData);
+        // console.log("Welcome --> historyUse", historyUse);
     }, []);
 
-    const history = useHistory();
     const { appData } = useContext(AppContext);
 
-    const handleClickAbout = () => {
-        console.log("Welcome -->handleClickAbout");
-        history.push("/about");
-    };
-    const handleClickContact = () => {
-        console.log("Welcome -->handleClickContact");
-        history.push("/contact");
-    };
     return (
         <div className="welcome">
             {/* <h1>Welcome</h1> */}
@@ -49,73 +50,116 @@ function Welcome() {
       <Button variant="contained" color="primary" onClick={handleClickContact}>
         Contact
       </Button> */}
-            <Router>
-                <AppBar position="static">
-                    <Toolbar>
-                        <Link className="welcome__link" to="/welcome">
-                            Home
-                        </Link>
-                        <Link className="welcome__link" to="/facts">
-                            Facts
-                        </Link>
-                        <Link className="welcome__link" to="/immerdemo">
-                            Immer
-                        </Link>
-                        <Link className="welcome__link" to="/hoc">
-                            Higher Order Component
-                        </Link>
-                        <Link className="welcome__link" to="/renderprops">
-                            Render Props
-                        </Link>
-                        <Link className="welcome__link" to="/demohome">
-                            Demographic
-                        </Link>
-                        <Link className="welcome__link" to="/about">
-                            About
-                        </Link>
-                        <Link className="welcome__link" to="/contact">
-                            Contact
-                        </Link>
 
-                        <IconButton
-                            color="secondary"
-                            onClick={() => history.goBack()}
-                        >
-                            <ArrowBackIcon />
-                        </IconButton>
-                    </Toolbar>
-                </AppBar>
+            <AppBar position="static">
+                <Toolbar>
+                    <Link className="welcome__link" to={`${match.url}/welcome`}>
+                        Home
+                    </Link>
+                    <Link className="welcome__link" to={`${match.url}/facts`}>
+                        Facts
+                    </Link>
+                    <Link
+                        className="welcome__link"
+                        to={`${match.url}/immerdemo`}
+                    >
+                        Immer
+                    </Link>
+                    <Link className="welcome__link" to={`${match.url}/hoc`}>
+                        Higher Order Component
+                    </Link>
+                    <Link
+                        className="welcome__link"
+                        to={`${match.url}/renderprops`}
+                    >
+                        Render Props
+                    </Link>
+                    <Link className="welcome__link" to={`${match.url}/useref`}>
+                        UseRef Demo
+                    </Link>
+                    <Link
+                        className="welcome__link"
+                        to={`${match.url}/nestedobjects`}
+                    >
+                        NestedObjects
+                    </Link>
 
-                <Switch>
-                    <Route path="/contact">
-                        <Contact />
-                    </Route>
-                    <Route path="/facts">
-                        <Facts />
-                    </Route>
-                    <Route path="/immerdemo">
-                        <ImmerDemo />
-                    </Route>
-                    <Route path="/hoc">
-                        <HigherOrderComponent />
-                    </Route>
-                    <Route path="/renderprops">
-                        <RenderProps />
-                    </Route>
-                    <Route path="/demohome">
-                        <DemoHome />
-                    </Route>
-                    <Route path="/demographic">
-                        <Demographic />
-                    </Route>
-                    <Route path="/employment">
-                        <Employment />
-                    </Route>
-                    <Route path="/about">
-                        <About />
-                    </Route>
-                </Switch>
-            </Router>
+                    <Link
+                        className="welcome__link"
+                        to={`${match.url}/demohome`}
+                    >
+                        Demographic
+                    </Link>
+                    <Link
+                        className="welcome__link"
+                        to={`${match.url}/unsplashsaga`}
+                    >
+                        Unsplash Saga
+                    </Link>
+                    <Link
+                        className="welcome__link"
+                        to={`${match.url}/about/me`}
+                    >
+                        About Me
+                    </Link>
+                    <Link className="welcome__link" to={`${match.url}/about`}>
+                        About
+                    </Link>
+
+                    <Link className="welcome__link" to={`${match.url}/contact`}>
+                        Contact
+                    </Link>
+
+                    <IconButton
+                        color="secondary"
+                        onClick={() => history.goBack()}
+                    >
+                        <ArrowBackIcon />
+                    </IconButton>
+                </Toolbar>
+            </AppBar>
+            <Switch>
+                <Route exact path={`${match.url}/about/me`}>
+                    <AboutMe />
+                </Route>
+                <Route exact path={`${match.url}/about`}>
+                    <About />
+                </Route>
+
+                <Route exact path={`${match.url}/contact`}>
+                    <Contact />
+                </Route>
+                <Route path={`${match.url}/facts`}>
+                    <Facts />
+                </Route>
+                <Route exact path={`${match.url}/immerdemo`}>
+                    <ImmerDemo />
+                </Route>
+
+                <Route path={`${match.url}/hoc`}>
+                    <HigherOrderComponent />
+                </Route>
+                <Route exact path={`${match.url}/renderprops`}>
+                    <RenderProps />
+                </Route>
+                <Route exact path={`${match.url}/useref`}>
+                    <UseRefDemo />
+                </Route>
+                <Route exact path={`${match.url}/nestedobjects`}>
+                    <NestedObjects />
+                </Route>
+
+                <Route path={`${match.url}/demohome`}>
+                    <DemoHome />
+                </Route>
+                <Route path={`${match.url}/unsplashsaga`}>
+                    <Saga />
+                </Route>
+
+                <Route exact>
+                    <Home />
+                </Route>
+            </Switch>
         </div>
     );
 }

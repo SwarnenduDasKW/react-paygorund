@@ -10,37 +10,42 @@ import A from "./ComplexTree/A";
 import AR from "./ComplexTreeRedux/AR";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import WelcomeRoute from "./Routes";
 
 function App() {
-  const [appData, setAppData] = useState({});
+    const [appData, setAppData] = useState({});
 
-  // const appProvider = { appData, setAppData };
-  const appProvider = useMemo(() => ({ appData, setAppData }), [
-    appData,
-    setAppData,
-  ]);
+    // const appProvider = { appData, setAppData };
+    const appProvider = useMemo(
+        () => ({ appData, setAppData }),
+        [appData, setAppData]
+    );
 
-  return (
-    <div className="App">
-      <AppContext.Provider value={appProvider}>
-        <Provider store={store}>
-          <Router>
-            <Switch>
-              <Route exact path="/">
-                <Login />
-              </Route>
-              <Route path="/welcome" component={Welcome} />
-              <Route exact path="/complextree" component={A} />
-              <Route exact path="/complextreeredux" component={AR} />
-              <Route>
-                <PageNotFound />
-              </Route>
-            </Switch>
-          </Router>
-        </Provider>
-      </AppContext.Provider>
-    </div>
-  );
+    return (
+        <div className="App">
+            <AppContext.Provider value={appProvider}>
+                <Provider store={store}>
+                    <Router>
+                        <Switch>
+                            <Route path="/complextree/redux" component={AR} />
+                            <Route path="/complextree" component={A} />
+                            <Route
+                                path="/welcomehome"
+                                component={WelcomeRoute}
+                            />
+                            <Route path="/welcome" component={Welcome} />
+                            <Route exact path="/">
+                                <Login />
+                            </Route>
+                            <Route>
+                                <PageNotFound />
+                            </Route>
+                        </Switch>
+                    </Router>
+                </Provider>
+            </AppContext.Provider>
+        </div>
+    );
 }
 
 export default App;
